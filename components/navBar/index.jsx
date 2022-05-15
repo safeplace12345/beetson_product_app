@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import { View , Text , StyleSheet , Dimensions} from "react-native"
+import {Image, View , Text , StyleSheet , Dimensions} from "react-native"
 
 export default function NavBar() {
+
+    let bellIcon , profileIcon;
+
+    try {
+      bellIcon = require("../../assets/icons/bell.png")
+      profileIcon = require("../../assets/icons/profile.png")
+    } catch (error) {
+      console.log(error)
+    }
   return (
     <View style={styles.nav}>
         <Text style={styles.head}> Home</Text>
         <View style={styles.accounts}>
-        <Text style={styles.menu}> H</Text>
-        <Text style={styles.menu}> R</Text>
+          <Image  style={styles.menu} source={bellIcon} alt="Bell icon .." />
+          <Image style={styles.menu} source={profileIcon} alt="Profile icon" />
         </View>
     </View>
   )
@@ -21,14 +30,12 @@ const styles = StyleSheet.create({
       justifyContent : "space-between"
     },
     head : {
-      fontSize : 30
-    },
-    menu : {
-      fontSize : 20 ,
-      marginHorizontal : 3
+      fontSize : 30,
+      color : "#3498DB"
     },
     accounts : {
       flexDirection : "row",
-      paddingHorizontal : 30
+      width : 80,
+      justifyContent : "space-between"
     }
 })

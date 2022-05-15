@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions , Image } from "react-native"
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+import React from 'react';
+import { View, StyleSheet, Dimensions , Image } from "react-native"
+import { Card, CardTitle, CardContent, CardAction, CardButton } from 'react-native-material-cards'
 
 export default function Author({ route, navigation }) {
     const { avatar, details, institute, name } = (route.params)
@@ -10,17 +10,18 @@ export default function Author({ route, navigation }) {
             <Card>
                 <Image style={styles.image} source={avatar} />
                 <CardTitle
-                    title={name}
-                    subtitle={institute}
+                style={styles.title}
+                    title={`Author : ${name}`}
+                    subtitle={`Institute : ${institute}`}
                 />
-                <Text>{details.location}</Text>
+                <CardContent style={styles.location} text={`Address : ${details.location}`}/>
                 <CardContent text={details.description} />
                 <CardAction
                     separator={true}
                     inColumn={false}>
                     <CardButton
-                        onPress={() => { }}
-                        title="View More"
+                        onPress={switchToHomeTab}
+                        title="Go Back"
                         color="blue"
                     />
                     
@@ -34,8 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 50,
         color: "red",
-        // display: "flex",
-        // justifyContent : "flex-end"
     },
     menu: {
         fontSize: 20,
@@ -44,5 +43,12 @@ const styles = StyleSheet.create({
     image: {
         width: Dimensions.get('window').width,
         resizeMode: "cover"
+    },
+    title : {
+        maxHeight : 100
+    },
+    location : {
+        maxHeight : 40
     }
+
 })
